@@ -1,0 +1,44 @@
+# smart-parking-system-
+smart parking system iot based project with the help of blynk app
+This code will:
+Connect the ESP8266 to your Wi-Fi network.
+Connect to the Blynk cloud service.
+Read the IR sensor to detect if a parking spot is occupied or empty.
+Update the status ("Occupied" / "Empty") on the Blynk app using a Virtual Pin (V0).
+Control a servo motor (simulating a gate/barrier) via a button on the Blynk app (Virtual Pin V1).
+Send a push notification alert to the Blynk app when the parking spot becomes empty.
+Display the status visually using an LED widget on Blynk (Virtual Pin V2).
+Assumptions:
+You are using an ESP8266-based board (like NodeMCU, Wemos D1 Mini). If using ESP32, library includes might change slightly (ESP32WiFi.h, WiFi.h, BlynkSimpleEsp32.h).
+The IR sensor outputs LOW when an object (car) is detected and HIGH when it's clear (empty). Adjust IR_DETECTED_STATE if your sensor behaves differently.
+The servo represents a gate: 0 degrees = Closed, 90 degrees = Open. Adjust GATE_CLOSED_ANGLE and GATE_OPEN_ANGLE if needed.
+1. Prerequisites:
+Hardware:
+ESP8266 Board (NodeMCU, Wemos D1 Mini, etc.)
+Servo Motor (e.g., SG90)
+IR Obstacle Avoidance Sensor
+Jumper Wires
+Breadboard (optional)
+Power Supply (USB or external 5V for servo if needed)
+Software:
+Arduino IDE installed.
+ESP8266 Board support installed in Arduino IDE (Boards Manager).
+Blynk Library: Install via Arduino IDE Library Manager (Search for "Blynk").
+Servo Library: Usually included with Arduino IDE (Servo.h).
+Blynk App:
+Install Blynk (legacy or Blynk IoT 2.0) on your phone.
+Create a new project.
+Get the Blynk Auth Token (emailed to you when creating the project).
+Add the following Widgets to your project dashboard:
+Labeled Value Display (Set to Virtual Pin V0, Label: Parking Status, Reading Rate: PUSH).
+Button (Set to Virtual Pin V1, Mode: Switch, Label: Gate Control, ON Value: 1, OFF Value: 0).
+LED (Set to Virtual Pin V2, Label: Spot Status).
+2. Wiring:
+IR Sensor:
+VCC -> 3.3V or 5V on ESP8266 (check sensor specs)
+GND -> GND on ESP8266
+OUT -> D2 on ESP8266 (or any other digital pin)
+Servo Motor:
+VCC -> VIN (5V) on ESP8266 (Important: If servo draws much current, power it from a separate stable 5V source, connecting its GND to ESP8266 GND).
+GND -> GND on ESP8266
+Signal -> D1 on ESP8266 (or any other PWM-capable pin
